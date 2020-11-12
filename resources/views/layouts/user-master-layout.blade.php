@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <link rel="stylesheet" href="{{asset('font/font-awesome/css/font-awesome.min.css')}}"/>
+    <title>@yield('page-title')</title>
+    <link rel="icon" type="image/png" href="{{asset('img/GS_logo.jpg')}}"/>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto:400,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/themify-icons.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/icon-font.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/hamburgers.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/animsition.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/daterangepicker.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/slick.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/lightbox.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('font/user-master-layout-font/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/product.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/checkout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/receipt.css')}}">
+    <link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('/js/jquery.paginate.css')}}">
+
+</head>
+<body>
+<div class="animsition">
+    <!-- Header -->
+    <header class="header1">
+        <!-- Header desktop -->
+        <div class="container-menu-header">
+            <div class="topbar">
+                <div class="topbar-social">
+                    <a href="https://www.facebook.com/GS-GYM-330250914034839/"
+                       class="topbar-social-item fa fa-facebook"></a>
+                    <a href="https://www.instagram.com/wheystore.vn/" class="topbar-social-item fa fa-instagram"></a>
+                    <a href="https://www.youtube.com/channel/UCiAZ1_f4d_oWQ1BsHLkBVZg"
+                       class="topbar-social-item fa fa-youtube-play"></a>
+                </div>
+
+                <span class="topbar-child1">
+					Giao hàng miễn phí với đơn hàng trên 2000000VNĐ
+				</span>
+
+                <div class="topbar-child2">
+					<span class="topbar-email">
+						gymerstore@gmail.com
+					</span>
+                </div>
+            </div>
+
+            <div class="wrap_header">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="{{asset('img/GS_logo.jpg')}}" style="max-height: 60px;" alt="IMG-LOGO">
+                </a>
+
+                <!-- Menu -->
+                <div class="wrap_menu">
+                    <nav class="menu">
+                        <ul class="main_menu">
+                            <li>
+                                <a href="/">Trang chủ</a>
+                            </li>
+
+                            <li>
+                                <a href="/product">Cửa hàng</a>
+                                <ul class="sub_menu">
+                                    @foreach($obj_category as $item)
+                                        <li><a href="{{'/product'.'?categoryId='.$item->id}}">{{$item -> name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li class="sale-noti">
+                                <a href="{{'/product'.'?bigSale=1'}}">Giảm giá sốc</a>
+                            </li>
+
+                            <li>
+                                <a href="/news">Tin tức thể hình</a>
+                                <ul class="sub_menu">
+                                    @foreach($obj_categoryNews as $item)
+                                        <li><a href="/news/categoryNews{{$item->id}}.html">{{$item -> name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="/about">Giới thiệu</a>
+                            </li>
+
+                            <li>
+                                <a href="/contact">Liên hệ</a>
+                            </li>
+                            <li>
+                                <div class="brm">
+                                    <button class="btn-shop" style="font-size: 15px" data-toggle="modal" data-target="#exampleModal">Tính BMR & TDEE</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content bg-aqua">
+                                                <div class="modal-body">
+                                                    <ul>
+                                                        <div class="contender">
+                                                            <div class="basicInfor">
+                                                                <div class="inputBox gederBox"><h3>Giới tính</h3>
+                                                                    <select name="gender" id="gender">
+                                                                        <option value="male">Male</option>
+                                                                        <option value="female">Female</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="inputBox bodyBox">
+                                                                    <div class="input"><label>Chiều cao</label> <div><input id="height" type="text" placeholder="cm"></div></div>
+                                                                    <div class="input"><label>Cân nặng</label> <div><input id="weight" type="text" placeholder="kg"></div></div>
+                                                                    <div class="input"><label>Độ tuổi</label> <div><input id="age" type="text" placeholder="20"></div></div>
+                                                                </div>
+                                                                <div class="inputBox paraBox"><h3>Cường độ vận động</h3>
+                                                                    <select name="days" id="days">
+                                                                        <option value="1.2">Ít vận động</option>
+                                                                        <option value="1.375">Nhẹ: 1-3 buổi / 1 tuần</option>
+                                                                        <option value="1.55">Trung bình: 3-5 buổi / 1 tuần</option>
+                                                                        <option value="1.725">Cao: 6-7 buổi / 1 tuần</option>
+                                                                        <option value="1.9">Cực cao: 7 buổi / 1 tuần với cường độ rất cao</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="calcBtn">
+                                                                    <button type="button" id="calcBtn">Calculator</button>
+                                                                </div>
+                                                                <div><span id="brm-result"></span></div>
+                                                                <div><span id="tdee-result"></span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary reset-btn">Reset</button>
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Header Icon -->
+                <div class="header-icons">
+                    @if(isset($logged_in))
+                        <a href="/user/logout" class="header-wrapicon1 dis-block">
+                            Log out
+                        </a>
+                    @else
+                        <a href="/user/login" class="header-wrapicon1 dis-block">
+                            <img src="{{asset('img/icon-header-01.png')}}" class="header-icon1" alt="ICON">
+                        </a>
+                    @endif
+                    <span class="linedivide2"></span>
+
+                    <div class="header-wrapicon2">
+                        <img src="{{asset('img/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown"
+                             alt="ICON">
+                        <span class="header-icons-noti">{{\App\ShoppingCart::getTotalItem()}}</span>
+
+                        <!-- Header cart noti -->
+                        <div class="header-cart header-dropdown">
+                            <ul class="header-cart-wrapitem" id="header-cart-wrapitem">
+                                @if(count(\App\ShoppingCart::getCart()->items)>0)
+                                    @foreach(\App\ShoppingCart::getCart()->items as $item)
+                                        <li class="header-cart-item">
+                                            <div class="header-cart-item-img">
+                                                <img src="{{$item->product->images}}"
+                                                     alt="IMG">
+                                            </div>
+                                            <div class="header-cart-item-txt">
+                                                <a href="#" class="header-cart-item-name">
+                                                    {{$item->product->name}}
+                                                </a>
+
+                                                <span class="header-cart-item-info">
+                                                {{$item->quantity}} x {{$item->product->discountPriceString}}
+                                            </span>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    'Hiện tại không có sản phẩm nào trong giỏ hàng'
+                                @endif
+                            </ul>
+                            <div class="header-cart-total">
+                                Tổng cộng: <span
+                                        id="header-cart-total">{{\App\ShoppingCart::getCart()->getTotalMoneyString()}}</span>
+                            </div>
+
+                            <div class="header-cart-buttons">
+                                <div class="header-cart-wrapbtn">
+                                    <!-- Button -->
+                                    <a href="/view-cart"
+                                       class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                        Xem giỏ hàng
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="result">
+        @section('content')
+        @show
+    </div>
+
+    <footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
+        <div class="flex-w p-b-90">
+            <div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
+                <h4 class="s-text12 p-b-30">
+                    GIỮ LIÊN LẠC VỚI CHÚNG TÔI
+                </h4>
+
+                <div>
+                    <p class="s-text7 w-size27">
+                        Bạn có câu hỏi gì không? Hãy cho chúng tôi biết tại cửa hàng số 2 Trần Đại Nghĩa, Bách Khoa,
+                        Hai Bà Trưng, Hà Nội hoặc gọi cho chúng tôi theo số (+84) 123456789
+                    </p>
+
+                    <div class="flex-m p-t-30">
+                        <a href="https://www.facebook.com/GS-GYM-330250914034839/"
+                           class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+                        <a href="https://www.instagram.com/wheystore.vn/" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
+                        <a href="https://www.youtube.com/channel/UCiAZ1_f4d_oWQ1BsHLkBVZg"
+                           class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                <h4 class="s-text12 p-b-30">
+                    Danh mục sản phẩm
+                </h4>
+
+                <ul>
+                    @foreach($obj_category as $item)
+                        <li class="p-b-9">
+                            <a href="{{'/product'.'?categoryId='.$item->id}}" class="s-text7">
+                                {{$item -> name}}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                <h4 class="s-text12 p-b-30">
+                    Tin tức thể hình
+                </h4>
+
+                <ul>
+
+                    @foreach($obj_categoryNews as $item)
+                        <li class="p-b-9">
+                            <a href="/news/categoryNews{{$item->id}}.html" class="s-text7">
+                                {{$item -> name}}
+                            </a>
+                        </li>
+                    @endforeach
+
+                </ul>
+            </div>
+
+            <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+                <h4 class="s-text12 p-b-30">
+                    Trợ giúp
+                </h4>
+
+                <ul>
+                    <li class="p-b-9">
+                        <a href="/about" class="s-text7">
+                            Giới thiệu
+                        </a>
+                    </li>
+
+                    <li class="p-b-9">
+                        <a href="/contact" class="s-text7">
+                            Liên hệ
+                        </a>
+                    </li>
+
+                    <li class="p-b-9">
+                        <a href="/return" class="s-text7">
+                            Chính sách đổi trả
+                        </a>
+                    </li>
+
+                    <li class="p-b-9">
+                        <a href="/faqs" class="s-text7">
+                            Những câu hỏi thường gặp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
+                <h4 class="s-text12 p-b-30">
+                    Nhận tin tức mới nhất
+                </h4>
+
+                <form method="GET" action="{{url('/add-subcriber')}}">
+                    <div class="effect1 w-size9">
+                        <input class="s-text7 bg6 w-full p-b-5" type="text" name="email"
+                               placeholder="email@example.com">
+                        <span class="effect1-line"></span>
+                    </div>
+
+                    <div class="w-size2 p-t-20">
+                        <!-- Button -->
+                        <button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+                            Đăng ký
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="t-center p-l-15 p-r-15">
+            <a href="#">
+                <img class="h-size2" src="{{asset('img/bao-kim-icon.PNG')}}" alt="IMG-BAO-KIM">
+            </a>
+
+            <a href="#">
+                <img class="h-size2" src="{{asset('img/visa.png')}}" alt="IMG-VISA">
+            </a>
+
+            <a href="#">
+                <img class="h-size2" src="{{asset('img/mastercard.png')}}" alt="IMG-MASTERCARD">
+            </a>
+
+            <div class="t-center s-text8 p-t-20">
+                Copyright © 2018 All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+    </div>
+
+    <!-- Container Selection -->
+    <div id="dropDownSelect1"></div>
+    <div id="dropDownSelect2"></div>
+</div>
+
+
+<!-- JS IMPORT -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src={{asset("/js/numeral.js")}}></script>
+
+<!--===============================================================================================-->
+<script type="text/javascript" src={{asset("vendor/jquery/jquery-3.2.1.min.js")}}></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="{{asset("vendor/animsition/js/animsition.min.js")}}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src={{asset("vendor/bootstrap/js/popper.js")}}></script>
+<script type="text/javascript" src={{asset("vendor/bootstrap/js/bootstrap.min.js")}}></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src={{asset("vendor/select2/select2.min.js")}}></script>
+
+<script type="text/javascript">
+    $(".selection-1").select2({
+        minimumResultsForSearch: 20,
+        dropdownParent: $('#dropDownSelect1')
+    });
+
+</script>
+<!--===============================================================================================-->
+<script type="text/javascript" src={{asset("vendor/daterangepicker/moment.min.js")}}></script>
+<script type="text/javascript" src={{asset("vendor/daterangepicker/daterangepicker.js")}}></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src={{asset("vendor/slick/slick.min.js")}}></script>
+<script type="text/javascript" src={{asset("js/slick-custom.js")}}></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src={{asset("vendor/sweetalert/sweetalert.min.js")}}></script>
+
+<!--===============================================================================================-->
+<script type="text/javascript" src="{{asset('js/master-layout-2-js/slick.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/master-layout-2-js/slick-custom.js')}}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="{{asset('js/master-layout-2-js/countdowntime.js')}}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="{{asset('js/master-layout-2-js/lightbox.min.js')}}"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="{{asset('js/master-layout-2-js/sweetalert.min.js')}}"></script>
+
+<script type="text/javascript">
+    $('.block2-btn-addcart').each(function () {
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function () {
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+
+    $('.block2-btn-addwishlist').each(function () {
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function () {
+            swal(nameProduct, "is added to wishlist !", "success");
+        });
+    });
+</script>
+
+<!--===============================================================================================-->
+
+<script type="text/javascript" src={{asset("vendor/noui/nouislider.min.js")}}></script>
+<script type="text/javascript">
+    /*[ No ui ]
+    ===========================================================*/
+    var filterBar = document.getElementById('filter-bar');
+
+    noUiSlider.create(filterBar, {
+        start: [50000, 5000000],
+        connect: true,
+        range: {
+            'min': 50000,
+            'max': 5000000
+        },
+        step: 100,
+    });
+
+    var skipValues = [
+        document.getElementById('value-lower'),
+        document.getElementById('value-upper')
+    ];
+
+    filterBar.noUiSlider.on('update', function (values, handle) {
+        skipValues[handle].innerHTML = Math.round(values[handle]);
+    });
+</script>
+
+<script>
+    $('.reset-btn').on('click', function () {
+        $("select[name='gender']").val("male");
+        $('#height').val("");
+        $('#weight').val("");
+        $('#age').val("");
+        $("select[name='days']").val("1.2");
+    });
+    $('#calcBtn').on('click', function () {
+        var gender = $("select[name='gender']").val();
+        var height = parseInt($('#height').val());
+        var weight = parseInt($('#weight').val());
+        var age = parseInt($('#age').val());
+        var days = parseFloat($("select[name='days']").val());
+        var bmr;
+        if (gender === 'male') {
+            bmr = (13.397 * weight) + (4.799 * height) - (5.677 * age) + 88.362;
+        } else {
+            bmr = (9.247  * weight) + (3.098 * height) - (4.330 * age) + 447.593;
+        }
+        var tdee = bmr * days;
+        $('#brm-result').text("BMR (Basal Metabolic Rate) = " + bmr  );
+        $('#tdee-result').text("TDEE (Total Daily Energy Expenditure) = " + tdee);
+    })
+</script>
+<script>
+    $('.modal').on('hidden.bs.modal', function(){
+        $(this).find('form')[0].reset();
+    });
+</script>
+
+<script>
+    $('input[name = "name"]').keypress(function (e) {
+        if (e.which == 13) {
+            $('form[name = "search-form"]').submit();
+        }
+    });
+</script>
+<!--===============================================================================================-->
+<script src="{{asset('js/master-layout-2-js/main.js')}}"></script>
+<script src={{asset("/js/jquery.paginate.js")}}></script>
+<script src="{{asset('/js/product.js')}}"></script>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script src="{{asset('js/my_script.js')}}"></script>
+
+
+</body>
+</html>
