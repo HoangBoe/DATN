@@ -17,19 +17,21 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('password');
-            $table->string('full_name');
-            $table->integer('gender');
-            $table->string('address');
+            $table->string('full_name')->nullable();
+            $table->integer('gender')->nullable();
+            $table->string('address')->nullable();
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
-            $table->string('DOB');
-            $table->string('phone');
+            $table->string('DOB')->nullable();
+            $table->string('phone')->nullable();
             $table->integer('point')->unsigned()->default(0);
-            $table->integer('role')->unsigned();
-            $table->foreign('role')->references('id')->on('roles');
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('status')->default(1);       // 1. Đang kích hoạt | 0. Đã khoá
+            $table->integer('status')->nullable()->default(1);       // 1. Đang kích hoạt | 0. Đã khoá
+            $table->string('api_token', 80)
+                ->unique()
+                ->nullable()
+                ->default(null);
         });
     }
 

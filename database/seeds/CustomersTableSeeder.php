@@ -15,8 +15,6 @@ class CustomersTableSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('customers')->truncate();
         \Illuminate\Support\Facades\DB::table('customers')->insert([
-
-
             [
                 'username'=>'nguyenviethoang1197',
                 'password'=>hash::make('hoang123'),
@@ -27,13 +25,10 @@ class CustomersTableSeeder extends Seeder
                 'email'=>'nguyenhoang1197@gmail.com',
                 'DOB'=>'1997-11-01',
                 'phone'=>'0981872297',
-                'role'=>2,
                 'status'=>1,
                 'created_at'=>\Carbon\Carbon::create(2020, 11, 1, 00, 00, 00),
                 'updated_at'=>\Carbon\Carbon::create(2020, 11, 1, 00, 00, 00)
             ],
-
-
         ]);
     }
 
