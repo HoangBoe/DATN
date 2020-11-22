@@ -162,4 +162,28 @@ class NewsController extends Controller
         }
         else return redirect('/admin/login')->with('message','Bạn phải đăng nhập để sử dụng quyền admin');
     }
+
+    public function getListPost(){
+        return News::all();
+    }
+
+    public function getPost(Request $id){
+        return News::find($id);
+    }
+
+    public function addPost(Request $request){
+        $news = News::create($request->all());
+        return response()->json($news, 201);
+    }
+
+    public function editPosy(Request $request, News $news){
+        $news->update($request->all());
+        return response()->json($news, 201);
+    }
+
+    public function deletePost(News $news){
+        $news->delete();
+        return response()->json($news, 201);
+    }
+
 }
