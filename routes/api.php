@@ -25,8 +25,8 @@ Route::post('admin/news/addpost', 'NewsController@addPost');
 Route::put('admin/news/editpost', 'NewsController@editPost');
 Route::delete('admin/news/delete', 'NewsController@deletePost');
 
-Route::get('/admin/getallcomment','NewsController@getAllComment');
-Route::get('/admin/getcomment','NewsController@getComment');
+Route::get('/admin/getallcomment','CommentController@getAllComment');
+Route::get('/admin/getcomment','CommentController@getComment');
 
 
 Route::get('/user/getuserinfo','CustomerController@getUserInfo');

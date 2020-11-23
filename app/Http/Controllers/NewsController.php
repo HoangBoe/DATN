@@ -163,13 +163,7 @@ class NewsController extends Controller
         else return redirect('/admin/login')->with('message','Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
-    public function getAllComment(){
-        return Comment::all();
-    }
 
-    public function getComment(Request $id){
-        return Comment::find($id);
-    }
     public function getListPost(){
         return News::all();
     }
