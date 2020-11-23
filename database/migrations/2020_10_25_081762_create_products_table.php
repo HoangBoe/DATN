@@ -25,6 +25,8 @@ class CreateProductsTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->text('images');
             $table->integer('status')->default('1');
+            $table->string('NSX')->nullable();
+            $table->string('HSD')->nullable();
             $table->timestamps();
         });
     }

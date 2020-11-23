@@ -33,7 +33,7 @@ elseif(!isset($data->username)
     || !isset($data->fullname)
     || !isset($data->address)
     || !isset($data->dob)
-    || !isset($data->gender) 
+    || !isset($data->gender)
     || !isset($data->phone)
     || empty(trim($data->username))
     || empty(trim($data->email))
@@ -50,7 +50,7 @@ elseif(!isset($data->username)
 
 // IF THERE ARE NO EMPTY FIELDS THEN-
 else:
-    
+
     $username = trim($data->username);
     $email = trim($data->email);
     $password = trim($data->password);
@@ -64,13 +64,13 @@ else:
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)):
         $returnData = msg(0,422,'Invalid Email Address!');
-    
+
     elseif(strlen($password) < 8):
         $returnData = msg(0,422,'Your password must be at least 8 characters long!');
 
     elseif(strlen($username) < 10):
         $returnData = msg(0,422,'Your username must be at least 10 characters long!');
-    
+
     elseif(strlen($valid_phone) < 10 || strlen($valid_phone) >11):
         $returnData =msg(0,422,'Invalid Phone Number!');
 
@@ -95,7 +95,7 @@ else:
 
             if($check_email_stmt->rowCount()):
                 $returnData = msg(0,422, 'This E-mail already in use!');
-            
+
             elseif($check_username_stmt->rowCount()):
                 $returnData = msg(0,422, 'This Username already in use!');
 
@@ -103,7 +103,7 @@ else:
                 $returnData = msg(0,422, 'This phone already in use!');
 
             else:
-                $insert_query = "INSERT INTO `users`(`username`,`password`,`full_name`,`address`,`email`,`DOB`,`gender`,`phone`,`role`) VALUES(:name,:password,:fullname,:address,:email,:dob,:gender,:phone,2)";
+                $insert_query = "INSERT INTO `users`(`username`,`password`,`full_name`,`address`,`email`,`DOB`,`gender`,`phone`) VALUES(:name,:password,:fullname,:address,:email,:dob,:gender,:phone)";
 
                 $insert_stmt = $conn->prepare($insert_query);
 
@@ -128,15 +128,15 @@ else:
             $returnData = msg(0,500,$e->getMessage());
         }
     endif;
-    
+
 endif;
 
 echo json_encode($returnData);
 
 
 
-/* raw data test  
-{       
+/* raw data test
+{
     "username":"nguyen thanh long",
     "password":"long1234",
     "fullname":"Nguyễn Thành Long",

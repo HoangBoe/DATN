@@ -19,13 +19,6 @@ class UsersTableSeeder extends Seeder
             [
                 'username'=>'admin01',
                 'password'=>hash::make('admin01'),
-                'full_name'=>'admin',
-                'gender'=>2,
-                'address'=>'Hanoi',
-                'email'=>'admin01@gmail.com',
-                'DOB'=>'1997-11-01',
-                'phone'=>'0981872297',
-                'role'=>1,
                 'status'=>1
             ],
 
