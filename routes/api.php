@@ -18,12 +18,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('customer/register', 'Auth\RegisterController@register');
-Route::get('news/getlistpost', 'NewsController@getlistPost');
-Route::get('news/getpost', 'NewsController@getPost');
-Route::post('news/addpost', 'NewsController@addPost');
-Route::put('news/editpost', 'NewsController@editPost');
-Route::delete('news/delete', 'NewsController@deletePost');
+
+Route::get('/admin/news/getlistpost', 'NewsController@getlistPost');
+Route::get('/admin/news/getpost', 'NewsController@getPost');
+Route::post('admin/news/addpost', 'NewsController@addPost');
+Route::put('admin/news/editpost', 'NewsController@editPost');
+Route::delete('admin/news/delete', 'NewsController@deletePost');
+
+Route::get('/admin/getallcomment','NewsController@getAllComment');
+Route::get('/admin/getcomment','NewsController@getComment');
+
+
 Route::get('/user/getuserinfo','CustomerController@getUserInfo');
+
+Route::get('/search/{product}','ProductController@searchProduct');
 
 
 

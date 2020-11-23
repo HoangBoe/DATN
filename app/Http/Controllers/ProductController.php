@@ -162,4 +162,15 @@ class ProductController extends Controller
         }
         else return redirect('/admin/login')->with('message','Bạn phải đăng nhập để sử dụng quyền admin');
     }
+
+    public function searchProduct($product){
+//        $data = $request->get('data');
+//
+//        return $product = Product::where('name', 'like', "%{$data}%")
+//                 ->get();
+//
+//        return Response::json(['data' => $product]);
+        return Product::where("name",$product)->get();
+
+    }
 }
