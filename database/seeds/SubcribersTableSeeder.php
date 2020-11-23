@@ -20,6 +20,13 @@ class SubcribersTableSeeder extends Seeder
                 'phone'=>'0392699990',
                 'status'=>1,
             ],
+            [
+                'email'=>'nguyenhoang197@gmail.com',
+                'name'=>'Nguyen Viet Hoang',
+                'address'=>'Hanoi',
+                'phone'=>'0981872297',
+                'status'=>1,
+            ],
         ]);
     }
 }
