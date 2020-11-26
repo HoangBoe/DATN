@@ -18,20 +18,28 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('customer/register', 'Auth\RegisterController@register');
-
-Route::get('/admin/news/getlistpost', 'NewsController@getlistPost');
-Route::get('/admin/news/getpost', 'NewsController@getPost');
-Route::post('/admin/news/addpost', 'NewsController@addPost');
-Route::put('/admin/news/editpost', 'NewsController@editPost');
-Route::delete('admin/news/delete', 'NewsController@deletePost');
-
-Route::get('/admin/getallcomment','CommentController@getAllComment');
-Route::get('/admin/getcomment','CommentController@getComment');
+Route::post('customer/login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
 
 
-Route::get('/user/getuserinfo','CustomerController@getUserInfo');
+
+Route::get('news', 'NewsController@getlistPost');
+Route::get('news/{id}', 'NewsController@getPost');
+
+Route::post('news', 'NewsController@add');
+Route::put('news/{id}', 'NewsController@update');
+Route::delete('news/{id}', 'NewsController@delete');
+
+Route::get('comment/','CommentController@getAllComment');
+Route::get('comment/{id}','CommentController@getComment');
+
+
+Route::get('userinfo/{id}','CustomerController@getUserInfo');
+Route::get('userinfo','CustomerController@getAllUserInfo');
 
 Route::get('/search/{product}','ProductController@searchProduct');
+
+
 
 
 

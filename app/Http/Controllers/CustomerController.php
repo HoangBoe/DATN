@@ -16,8 +16,11 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getUserInfo(Request $id){
+    public function getUserInfo($id){
         return Customer::find($id);
+    }
+    public function getAllUserInfo(){
+        return Customer::all();
     }
     public function setUserInfo(Request $request, Customer $customer){
         $customer->update($request->all());

@@ -168,23 +168,29 @@ class NewsController extends Controller
         return News::all();
     }
 
-    public function getPost(Request $id){
+    public function getPost($id){
         return News::find($id);
     }
 
-    public function addPost(Request $request){
-        $news = News::create($request->all());
-        return response()->json($news, 201);
+    public function add(Request $request)
+    {
+        return News::create($request->all());
     }
 
-    public function editPosy(Request $request, News $news){
+    public function update(Request $request, $id)
+    {
+        $news = News::findOrFail($id);
         $news->update($request->all());
-        return response()->json($news, 201);
+
+        return $news;
     }
 
-    public function deletePost(News $news){
+    public function delete(Request $request, $id)
+    {
+        $news = News::findOrFail($id);
         $news->delete();
-        return response()->json($news, 201);
+
+        return 204;
     }
 
 }

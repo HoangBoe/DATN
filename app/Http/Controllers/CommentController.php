@@ -12,7 +12,7 @@ class CommentController extends Controller
         return Comment::all();
     }
 
-    public function getComment(Request $id){
+    public function getComment($id){
         return Comment::find($id);
     }
 }

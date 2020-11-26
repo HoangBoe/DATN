@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     //
+    protected $fillable =['title','summary','content','images','hot','category_news_id','views'];
     protected $table = 'news';
 
     public function category_news()
