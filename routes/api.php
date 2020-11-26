@@ -21,8 +21,8 @@ Route::post('customer/register', 'Auth\RegisterController@register');
 
 Route::get('/admin/news/getlistpost', 'NewsController@getlistPost');
 Route::get('/admin/news/getpost', 'NewsController@getPost');
-Route::post('admin/news/addpost', 'NewsController@addPost');
-Route::put('admin/news/editpost', 'NewsController@editPost');
+Route::post('/admin/news/addpost', 'NewsController@addPost');
+Route::put('/admin/news/editpost', 'NewsController@editPost');
 Route::delete('admin/news/delete', 'NewsController@deletePost');
 
 Route::get('/admin/getallcomment','CommentController@getAllComment');
