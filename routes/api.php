@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('customer/register', 'Auth\RegisterController@register');
-Route::post('customer/login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
 
@@ -38,6 +38,8 @@ Route::get('userinfo/{id}','CustomerController@getUserInfo');
 Route::get('userinfo','CustomerController@getAllUserInfo');
 
 Route::get('/search/{product}','ProductController@searchProduct');
+
+Route::post('/search', 'SearchController@searchProduct');
 
 
 

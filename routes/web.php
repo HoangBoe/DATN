@@ -116,3 +116,5 @@ Route::post('profile/avatar','UserLoginController@avatar')->name('profile.avatar
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

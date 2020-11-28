@@ -28,7 +28,7 @@ class CreateCustomersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->integer('status')->nullable()->default(1);       // 1. Đang kích hoạt | 0. Đã khoá
-            $table->string('api_token', 80)
+            $table->string('api_token', 60)
                 ->unique()
                 ->nullable()
                 ->default(null);
