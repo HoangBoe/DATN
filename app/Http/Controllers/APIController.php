@@ -23,11 +23,8 @@ class APIController extends Controller
         $input = $request->only('username', 'password');
         $token = null;
 
-
-        \Debugger::dump($input);
-
-
         if (!$token = JWTAuth::attempt($input)) {
+            \Debugger::dump(JWTAuth::attempt($input));
             return response()->json([
                 'status' => false,
                 'message' => 'Invalid Email or Password',
