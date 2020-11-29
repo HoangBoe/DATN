@@ -21,6 +21,11 @@ class UsersTableSeeder extends Seeder
                 'password'=>hash::make('admin01'),
                 'status'=>1
             ],
+//            [
+//                'username'=>'nguyenviethoang1197',
+//                'password'=>hash::make('hoang123'),
+//                'status'=>1
+//            ],
 
         ]);
     }

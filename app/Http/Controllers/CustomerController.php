@@ -16,14 +16,23 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $customer = Customer::all();
+
+        return response()->json($customer, 200);
+    }
+
     public function getUserInfo($id){
         return Customer::find($id);
     }
     public function getAllUserInfo(){
         return Customer::all();
     }
-    public function setUserInfo(Request $request, Customer $customer){
+    public function setUserInfo(Request $request, $id){
+        $customer = Customer::findOrFail($id);
         $customer->update($request->all());
-        return response()->json($customer, 201);
+
+        return $customer;
     }
 }
