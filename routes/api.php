@@ -20,13 +20,28 @@ use Illuminate\Http\Request;
 //Route::post('customer/register', 'Auth\RegisterController@register');
 
 
-Route::post('login', 'APIController@login');
+//Route::post('login', 'APIController@login');
+//Route::get('logout', 'APIController@logout');
+//
+//
+//
+//
+//Route::group(['middleware' => 'auth.jwt'], function () {
+//    Route::get('users', 'UserController@index');
+//});
+Route::group([
 
-Route::group(['middleware' => 'auth.jwt'], function () {
-    Route::get('logout', 'APIController@logout');
-    Route::get('users', 'UserController@index');
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'APIController@login');
+    Route::post('logout', 'APIController@logout');
+    Route::post('refresh', 'APIController@refresh');
+    Route::post('me', 'AuthController@me');
+
 });
-
 
 
 Route::get('news', 'NewsController@getlistPost');
@@ -43,9 +58,9 @@ Route::get('comment/{id}','CommentController@getComment');
 Route::get('userinfo/{id}','CustomerController@getUserInfo');
 Route::get('userinfo','CustomerController@getAllUserInfo');
 
-Route::get('/search/{product}','ProductController@searchProduct');
+Route::get('search/{product}','ProductController@searchProduct');
 
-Route::post('/search', 'SearchController@searchProduct');
+Route::post('search', 'SearchController@searchProduct');
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CategoryNews;
 use App\Comment;
+use App\Customer;
 use App\News;
 use Illuminate\Http\Request;
 use App\Brand;
@@ -165,7 +166,7 @@ class NewsController extends Controller
 
 
     public function getListPost(){
-        return News::all();
+            return News::all();
     }
 
     public function getPost($id){

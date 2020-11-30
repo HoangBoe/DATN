@@ -17,22 +17,22 @@ class DashboardController
 {
     public function showAdminPage()
     {
-        if (Auth::check()) {
+//        if (Auth::check()) {
             return view('admin.dashboard');
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+//        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
     public function getCountNewOrderApi()
     {
-        if (Auth::check()) {
+   //     if (Auth::check()) {
             $count = count(Order::all()->where('created_at', '<=', Carbon::now())->where('created_at', '>=', Carbon::yesterday()));
             return Response::json($count);
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+   //     } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
     public function getNewProduct()
     {
-        if (Auth::check()) {
+  //      if (Auth::check()) {
             $start_date = Input::get('startDate');
             $end_date = Input::get('endDate');
             if ($start_date != null && $end_date != null) {
@@ -44,12 +44,12 @@ class DashboardController
                 $count = count(Product::all()->where('created_at', '<=', Carbon::now())->where('created_at', '>=', Carbon::yesterday()));
                 return Response::json($count);
             }
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+   //     } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
     public function getCountSubscriber()
     {
-        if (Auth::check()) {
+  //      if (Auth::check()) {
             $start_date = Input::get('startDate');
             $end_date = Input::get('endDate');
             if ($start_date != null && $end_date != null) {
@@ -61,8 +61,7 @@ class DashboardController
                 $count = count(Subscribed::all()->where('created_at', '<=', Carbon::now())->where('created_at', '>=', Carbon::yesterday()));
                 return Response::json($count);
             }
-        }
-        else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+ //       } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
     public function showNewOrder()
     {
@@ -75,7 +74,7 @@ class DashboardController
 
     public function getTotalRevenue()
     {
-        if (Auth::check()) {
+  //      if (Auth::check()) {
             $start_date = Input::get('startDate');
             $end_date = Input::get('endDate');
             if ($start_date != null && $end_date != null) {
@@ -90,12 +89,12 @@ class DashboardController
                 return Response::json($revenue);
         }
 
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+   //     } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
     public function getChartDataApi()
     {
-        if (Auth::check()) {
+ //       if (Auth::check()) {
             $start_date = Input::get('startDate');
             $end_date = Input::get('endDate');
             if ($start_date != null && $end_date != null) {
@@ -115,12 +114,12 @@ class DashboardController
                 return $chart_data;
             }
 
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+   //     } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
     public function getPieChartDataApi()
     {
-        if (Auth::check()) {
+  //      if (Auth::check()) {
             $start_date = Input::get('startDate');
             $end_date = Input::get('endDate');
             if ($start_date != null && $end_date != null) {
@@ -143,12 +142,12 @@ class DashboardController
                     ->get();
                 return $chart_data;
             }
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+  //      } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 
     public function getColumnChartDataApi()
     {
-        if (Auth::check()) {
+   //     if (Auth::check()) {
             $start_date = Input::get('startDate');
             $end_date = Input::get('endDate');
             if ($start_date != null && $end_date != null) {
@@ -220,6 +219,6 @@ class DashboardController
                     ->get();
                 return $chart_data;
             }
-        } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
+   //     } else return redirect('/admin/login')->with('message', 'Bạn phải đăng nhập để sử dụng quyền admin');
     }
 }
