@@ -44,6 +44,16 @@ Route::group([
 });
 
 
+Route::post('admin/login', 'API\UserController@login');
+Route::post('admin/register', 'API\UserController@register');
+Route::post('admin/logout', 'API\UserController@logout');
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'API\UserController@details');
+
+});
+
+
 Route::get('news', 'NewsController@getlistPost');
 Route::get('news/{id}', 'NewsController@getPost');
 

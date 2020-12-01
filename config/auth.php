@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'api',
-        'passwords' => 'customers',
+        'passwords' => 'customer',
     ],
 
     /*
@@ -58,9 +58,9 @@ return [
         ],
 
 
-        'customer-api' => [
-            'driver' => 'token',
-            'provider' => 'customers',
+        'user-api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
         ],
 
     ],

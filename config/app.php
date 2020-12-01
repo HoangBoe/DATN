@@ -162,6 +162,7 @@ return [
         Snowfire\Beautymail\BeautymailServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Lanin\Laravel\ApiDebugger\ServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 
